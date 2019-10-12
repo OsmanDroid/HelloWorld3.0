@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/liveConsult"
+            android:title="Live Consultation" />
+
+        <item
+            android:id="@+id/appointments"
+            android:title="My Appointments" />
+
+        <item
+            android:id="@+id/tasks"
+            android:title="My Tasks" />
+
+
+    </group>
+
+    <item android:title="Nearby">
+        <menu>
+
+            <item
+                android:id="@+id/nav_rate"
+                android:title="Hospitals" />
+
+            <item
+                android:id="@+id/nav_share"
+                android:title="Medicals" />
+
+
+        </menu>
+    </item>
+
+</menu>

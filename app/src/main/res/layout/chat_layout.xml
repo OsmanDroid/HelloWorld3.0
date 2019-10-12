@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="1"
+    android:orientation="horizontal">
+
+
+    <LinearLayout
+        android:layout_weight="0.5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_gravity="start|top"
+            android:id="@+id/bot_imgview"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/bot_png"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FF000000"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginEnd="16dp"
+                android:textSize="18sp"
+                android:autoLink="web|map|email|phone"
+                android:id="@+id/leftText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Hello this is me!!"
+                android:padding="8dp"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/left_bg"
+                android:elevation="2dp" />
+
+            <Button
+                android:elevation="3dp"
+                android:visibility="gone"
+                android:id="@+id/extra"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/others_bg"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                android:text="VIEW ON MAP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_weight="0.5"
+        android:gravity="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:gravity="start"
+            android:autoLink="web|map|email|phone"
+            android:textSize="18sp"
+            android:id="@+id/rightText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginStart="16dp"
+            android:text="Hi!! How are you!!"
+            android:background="@drawable/right_bg"
+            android:textColor="#fff"
+            android:padding="8dp"
+            android:elevation="2dp"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_gravity="end|top"
+            android:id="@+id/user_imgview"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/user"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FF000000"/>
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
