@@ -75,8 +75,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(MainActivity.this,LiveDoctor.class));
                 break;
             case R.id.groupD:
+                startActivity(new Intent(MainActivity.this,GroupDiscussion.class));
                 break;
             case R.id.tasks:
+                startActivity(new Intent(MainActivity.this,TasksActivity.class));
                 break;
             case R.id.nav_hospitals:
                 break;
@@ -124,5 +126,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
 
     }
+
 
 }

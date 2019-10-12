@@ -6,7 +6,115 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/app_bar_main"
     android:orientation="vertical"
-    android:gravity="center">
+    android:weightSum="1"
+    android:layout_marginTop="50dp"
+    android:background="#806ABD9D">
+
+    <androidx.cardview.widget.CardView
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        cardCornerRadius="16dp"
+        cardElevation="4dp"
+        contentPadding="10dp"
+        cardPreventCornerOverlap="true"
+        cardUseCompatPadding="true">
+
+        <LinearLayout
+
+            android:orientation="vertical"
+            android:id="@+id/lay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:padding="16dp">
+
+            <ImageView
+                android:scaleType="fitCenter"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:src="@drawable/home1"
+                android:layout_margin="8dp" />
+            <LinearLayout
+                android:gravity="center|end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end">
+
+                <ImageButton
+                    android:id="@+id/chatDoc"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_chat_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chat"
+                    />
+
+                <ImageButton
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_call"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chat"
+                    />
+
+                <ImageButton
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_videocall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chat"
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        cardCornerRadius="8dp"
+        cardElevation="4dp"
+        contentPadding="10dp"
+        cardPreventCornerOverlap="true"
+        cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_margin="8dp"
+                android:layout_gravity="center"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/doc1" />
+
+                <Button
+                    android:layout_margin="8dp"
+                    android:layout_gravity="center"
+                    android:background="@color/colorAccent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enroll Now"
+                    />
+
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 
 

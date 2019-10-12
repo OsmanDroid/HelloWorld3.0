@@ -16,12 +16,16 @@ import java.util.List;
 public class CustomAdapter extends RecyclerView.Adapter<ChatViewHolder> {
 
 
-    List<ChatModel> chatModelList;
-    Context context;
+    private List<ChatModel> chatModelList;
+    private Context context;
+    //private int chatCase = 0;
+    private String uid;
 
-    public CustomAdapter(Context context,List<ChatModel> chatModelList) {
+    public CustomAdapter(Context context,List<ChatModel> chatModelList,String uid) {
         this.context = context;
         this.chatModelList = chatModelList;
+        //this.chatCase = chatCase;
+        this.uid = uid;
     }
 
     @NonNull
@@ -39,6 +43,15 @@ public class CustomAdapter extends RecyclerView.Adapter<ChatViewHolder> {
         ChatModel model = chatModelList.get(position);
         if (chatModelList.get(position).getMsgUser().equals("user")) {
 
+            holder.rightText.setText(model.getMsgText());
+
+            holder.rightText.setVisibility(View.VISIBLE);
+            holder.leftText.setVisibility(View.GONE);
+            holder.doctor.setVisibility(View.GONE);
+            holder.user.setVisibility(View.VISIBLE);
+        }
+        else if(chatModelList.get(position).getMsgUser().equals(uid))
+        {
             holder.rightText.setText(model.getMsgText());
 
             holder.rightText.setVisibility(View.VISIBLE);

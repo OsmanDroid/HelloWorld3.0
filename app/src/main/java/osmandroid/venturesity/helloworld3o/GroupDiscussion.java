@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class LiveDoctor extends AppCompatActivity {
+public class GroupDiscussion extends AppCompatActivity {
 
     private static final String TAG = "TAG";
     RecyclerView recyclerView;
@@ -39,6 +38,7 @@ public class LiveDoctor extends AppCompatActivity {
     List<ChatModel> chatModelList;
 
     MyProgressDialog myProgressDialog;
+
 
 
     @Override
@@ -65,9 +65,9 @@ public class LiveDoctor extends AppCompatActivity {
 
         adapter = new CustomAdapter(this, chatModelList, Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
 
-        ref = FirebaseDatabase.getInstance().getReference().child("Users").child(Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
+        ref = FirebaseDatabase.getInstance().getReference().child("GroupDiscussion");
 
-        ref.child("liveD").addChildEventListener(new ChildEventListener() {
+        ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 ChatModel model = dataSnapshot.getValue(ChatModel.class);
@@ -102,7 +102,7 @@ public class LiveDoctor extends AppCompatActivity {
             }
         });
 
-        ref.child("liveD").addListenerForSingleValueEvent(new ValueEventListener() {
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 if (snapshot.getValue() == null) {
@@ -126,8 +126,8 @@ public class LiveDoctor extends AppCompatActivity {
 
                 if (!message.equals("")) {
 
-                    ChatModel chatMessage = new ChatModel(message, "user");
-                    ref.child("liveD").push().setValue(chatMessage);
+                    ChatModel chatMessage = new ChatModel(message, mAuth.getCurrentUser().getUid());
+                    ref.push().setValue(chatMessage);
                 }
                 editText.setText("");
             }

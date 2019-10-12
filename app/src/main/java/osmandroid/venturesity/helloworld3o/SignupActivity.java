@@ -143,6 +143,8 @@ public class SignupActivity extends AppCompatActivity {
         userRef.child("age").setValue(user.age);
         userRef.child("weight").setValue(user.weight);
         userRef.child("otherd").setValue(user.otherd);
+        userRef.child("isEnrolled").setValue("false");
+
 
         userRef.child("chat").child("initial").child("msgUser").setValue("doctor");
         userRef.child("chat").child("initial").child("msgText").setValue("Hi, I'm your Health Assistant.\nHow may I help you?");

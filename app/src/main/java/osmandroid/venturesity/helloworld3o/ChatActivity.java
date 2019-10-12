@@ -80,7 +80,7 @@ public class ChatActivity extends AppCompatActivity {
 
         chatModelList = new ArrayList<>();
 
-        adapter = new CustomAdapter(this, chatModelList);
+        adapter = new CustomAdapter(this, chatModelList, Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
 
         ref = FirebaseDatabase.getInstance().getReference().child("Users").child(Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
         //ref.keepSynced(true);
