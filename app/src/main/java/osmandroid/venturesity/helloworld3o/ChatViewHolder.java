@@ -16,16 +16,16 @@ public class ChatViewHolder extends RecyclerView.ViewHolder  {
 
     TextView leftText,rightText;
     Button btnIntent;
-    CircleImageView bot,user;
+    CircleImageView doctor,user;
 
     public ChatViewHolder(View itemView){
         super(itemView);
 
-        leftText = (TextView)itemView.findViewById(R.id.leftText);
-        rightText = (TextView)itemView.findViewById(R.id.rightText);
+        leftText = itemView.findViewById(R.id.leftText);
+        rightText = itemView.findViewById(R.id.rightText);
         btnIntent = itemView.findViewById(R.id.extra);
 
-        bot = itemView.findViewById(R.id.bot_imgview);
+        doctor = itemView.findViewById(R.id.doctor_imgview);
         user = itemView.findViewById(R.id.user_imgview);
 
 

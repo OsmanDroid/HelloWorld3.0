@@ -43,7 +43,7 @@ public class CustomAdapter extends RecyclerView.Adapter<ChatViewHolder> {
 
             holder.rightText.setVisibility(View.VISIBLE);
             holder.leftText.setVisibility(View.GONE);
-            holder.bot.setVisibility(View.GONE);
+            holder.doctor.setVisibility(View.GONE);
             holder.user.setVisibility(View.VISIBLE);
         }
         else {
@@ -51,7 +51,7 @@ public class CustomAdapter extends RecyclerView.Adapter<ChatViewHolder> {
             holder.rightText.setVisibility(View.GONE);
             holder.leftText.setVisibility(View.VISIBLE);
             holder.user.setVisibility(View.GONE);
-            holder.bot.setVisibility(View.VISIBLE);
+            holder.doctor.setVisibility(View.VISIBLE);
 
             if(model.getMsgText().contains("https://goo.gl/maps/ycwLmRTvADRLaGvz7"))
             {

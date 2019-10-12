@@ -15,10 +15,10 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_gravity="start|top"
-            android:id="@+id/bot_imgview"
+            android:id="@+id/doctor_imgview"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/bot_png"
+            android:src="@drawable/doctor"
             app:civ_border_width="2dp"
             app:civ_border_color="#FF000000"/>
 

@@ -48,12 +48,6 @@ public class ChatActivity extends AppCompatActivity {
     CustomAdapter adapter;
     List<ChatModel> chatModelList;
 
-    //FirebaseRecyclerAdapter<ChatModel, ChatViewHolder> adapter;
-    //FirebaseRecyclerOptions<ChatModel> options;
-
-    //private AIService aiService;
-
-
     MyProgressDialog myProgressDialog;
 
     @NonNull
@@ -164,7 +158,7 @@ public class ChatActivity extends AppCompatActivity {
 
                                 Result result = response.getResult();
                                 String reply = result.getFulfillment().getSpeech();
-                                ChatModel chatMessage = new ChatModel(reply, "bot");
+                                ChatModel chatMessage = new ChatModel(reply, "doctor");
                                 Log.d(TAG, "onPostExecute: "+chatMessage);
                                 ref.child("chat").push().setValue(chatMessage);
                             }
