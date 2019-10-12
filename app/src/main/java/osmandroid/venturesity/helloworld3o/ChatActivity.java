@@ -2,6 +2,7 @@ package osmandroid.venturesity.helloworld3o;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -43,6 +46,7 @@ public class ChatActivity extends AppCompatActivity {
     EditText editText;
     ImageView sendButton;
 
+    FirebaseAuth mAuth;
     DatabaseReference ref;
 
     CustomAdapter adapter;
@@ -72,19 +76,21 @@ public class ChatActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
 
+        mAuth = FirebaseAuth.getInstance();
+
         chatModelList = new ArrayList<>();
 
-        adapter = new CustomAdapter(this,chatModelList);
+        adapter = new CustomAdapter(this, chatModelList);
 
-        ref = FirebaseDatabase.getInstance().getReference();
+        ref = FirebaseDatabase.getInstance().getReference().child("Users").child(Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
         //ref.keepSynced(true);
 
         ref.child("chat").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 ChatModel model = dataSnapshot.getValue(ChatModel.class);
-                Log.d(TAG, "onChildAdded: "+model.msgUser);
-                Log.d(TAG, "onChildAdded: "+model.msgText);
+                Log.d(TAG, "onChildAdded: " + model.msgUser);
+                Log.d(TAG, "onChildAdded: " + model.msgText);
 
                 chatModelList.add(model);
                 adapter.notifyDataSetChanged();
@@ -114,17 +120,16 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-        final AIConfiguration config = new AIConfiguration("3d5f701bdc764b4a87a888da5bdb337e",
+        final AIConfiguration config = new AIConfiguration("7597677cd3eb4de789abb14778816d2d",
                 AIConfiguration.SupportedLanguages.English,
                 AIConfiguration.RecognitionEngine.System);
 
         //aiService = AIService.getService(this, config);
         //aiService.setListener(this);
 
-        final AIDataService aiDataService = new AIDataService(this,config);
+        final AIDataService aiDataService = new AIDataService(this, config);
 
         final AIRequest aiRequest = new AIRequest();
-
 
 
         sendButton.setOnClickListener(new View.OnClickListener() {
@@ -140,7 +145,7 @@ public class ChatActivity extends AppCompatActivity {
                     ref.child("chat").push().setValue(chatMessage);
 
                     aiRequest.setQuery(message);
-                    new AsyncTask<AIRequest,Void, AIResponse>(){
+                    new AsyncTask<AIRequest, Void, AIResponse>() {
 
                         @Override
                         protected AIResponse doInBackground(AIRequest... aiRequests) {
@@ -148,10 +153,11 @@ public class ChatActivity extends AppCompatActivity {
                             try {
                                 return aiDataService.request(aiRequest);
                             } catch (AIServiceException e) {
-                                Log.d(TAG, "doInBackground: Error:"+e.toString());
+                                Log.d(TAG, "doInBackground: Error:" + e.toString());
                             }
                             return null;
                         }
+
                         @Override
                         protected void onPostExecute(AIResponse response) {
                             if (response != null) {
@@ -159,7 +165,7 @@ public class ChatActivity extends AppCompatActivity {
                                 Result result = response.getResult();
                                 String reply = result.getFulfillment().getSpeech();
                                 ChatModel chatMessage = new ChatModel(reply, "doctor");
-                                Log.d(TAG, "onPostExecute: "+chatMessage);
+                                Log.d(TAG, "onPostExecute: " + chatMessage);
                                 ref.child("chat").push().setValue(chatMessage);
                             }
                         }
@@ -174,14 +180,10 @@ public class ChatActivity extends AppCompatActivity {
         });
 
 
-
-
-
         recyclerView.setAdapter(adapter);
 
 
     }
-
 
 
     private void closeKeyboard() {
@@ -196,8 +198,24 @@ public class ChatActivity extends AppCompatActivity {
         super.onBackPressed();
         Bungee.fade(this);
     }
-}
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
+    }
+
+    private void updateUI(FirebaseUser user) {
+        if (user == null) {
+            Intent intent = new Intent(ChatActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
+}
 
 
 

@@ -22,6 +22,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private FirebaseAuth mAuth;
     EditText Emailfield;
     EditText Passwordfield;
+    MyProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Emailfield = findViewById(R.id.fieldEmail);
         Passwordfield = findViewById(R.id.fieldPassword);
         findViewById(R.id.SignInButton).setOnClickListener(this);
+        findViewById(R.id.btn_signup).setOnClickListener(this);
+
+        progressDialog = new MyProgressDialog(this);
     }
 
     @Override
@@ -86,11 +90,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 if (task.isSuccessful()) {
                                     Log.d(TAG, "signInWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
+                                    progressDialog.dismissPDialog();
                                     updateUI(user);
                                 } else {
                                     Log.w(TAG, "signInWithEmail:failure", task.getException());
                                     Toast.makeText(LoginActivity.this, "Authentication failed." + task.getException(),
                                             Toast.LENGTH_SHORT).show();
+                                    progressDialog.dismissPDialog();
                                     updateUI(null);
 
                                 }
@@ -105,8 +111,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         int i = v.getId();
-        if (i == R.id.SignInButton) {
-            signIn(Emailfield.getText().toString(), Passwordfield.getText().toString());
+        switch (i)
+        {
+            case R.id.SignInButton:
+                progressDialog.showPDiialog();
+                signIn(Emailfield.getText().toString(), Passwordfield.getText().toString());
+                break;
+
+            case R.id.btn_signup:
+                startActivity(new Intent(LoginActivity.this,SignupActivity.class));
+                finish();
+                break;
         }
 
     }

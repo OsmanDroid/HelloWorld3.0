@@ -3,22 +3,28 @@ package osmandroid.venturesity.helloworld3o;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
     FloatingActionButton fab;
+
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
 
+        mAuth = FirebaseAuth.getInstance();
+
         fab = findViewById(R.id.fabbtn);
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +68,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
+        switch (menuItem.getItemId())
+        {
+            case R.id.liveConsult:
+                startActivity(new Intent(MainActivity.this,LiveDoctor.class));
+                break;
+            case R.id.groupD:
+                break;
+            case R.id.tasks:
+                break;
+            case R.id.nav_hospitals:
+                break;
+            case R.id.nav_medicals:
+                break;
+        }
         return true;
     }
 
@@ -74,4 +97,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu,menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId())
+        {
+            case R.id.signoutM:
+                mAuth.signOut();
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+
+
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+
 }

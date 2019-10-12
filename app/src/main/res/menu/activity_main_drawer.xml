@@ -10,8 +10,8 @@
             android:title="Live Consultation" />
 
         <item
-            android:id="@+id/appointments"
-            android:title="My Appointments" />
+            android:id="@+id/groupD"
+            android:title="Group Discussion" />
 
         <item
             android:id="@+id/tasks"
@@ -24,11 +24,11 @@
         <menu>
 
             <item
-                android:id="@+id/nav_rate"
+                android:id="@+id/nav_hospitals"
                 android:title="Hospitals" />
 
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_medicals"
                 android:title="Medicals" />
 
 
