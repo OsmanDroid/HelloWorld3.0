@@ -21,6 +21,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import spencerstudios.com.bungeelib.Bungee;
+
 public class SignupActivity extends AppCompatActivity {
 
     EditText nameET, emailET, passwordET, ageEt, weightET, otherdetailsET;
@@ -151,6 +153,9 @@ public class SignupActivity extends AppCompatActivity {
         userRef.child("isEnrolled").setValue("false");
 
 
+        ChatModel chatMessage = new ChatModel("Hi, I'm your personal health care assistant. How can I help you?", "doctor");
+        userRef.child("chat").push().setValue(chatMessage);
+
         //userRef.child("chat").child("initial").child("msgUser").setValue("doctor");
         //userRef.child("chat").child("initial").child("msgText").setValue("Hi, I'm your Health Assistant.\nHow may I help you?");
 
@@ -161,6 +166,7 @@ public class SignupActivity extends AppCompatActivity {
         if (user != null) {
             Intent intent = new Intent(SignupActivity.this, MainActivity.class);
             startActivity(intent);
+            Bungee.inAndOut(this);
             finish();
 
         }

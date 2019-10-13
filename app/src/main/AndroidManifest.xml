@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Breather"></activity>
+        <activity android:name=".Breather" />
         <activity android:name=".TasksActivity" />
         <activity android:name=".GroupDiscussion" />
         <activity android:name=".LiveDoctor" />

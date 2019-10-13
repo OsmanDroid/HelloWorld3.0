@@ -34,6 +34,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import spencerstudios.com.bungeelib.Bungee;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
@@ -126,12 +128,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         {
             case R.id.liveConsult:
                 startActivity(new Intent(MainActivity.this,LiveDoctor.class));
+                Bungee.card(this);
                 break;
             case R.id.groupD:
                 startActivity(new Intent(MainActivity.this,GroupDiscussion.class));
+                Bungee.card(this);
                 break;
             case R.id.tasks:
                 startActivity(new Intent(MainActivity.this,TasksActivity.class));
+                Bungee.card(this);
                 break;
             case R.id.nav_hospitals:
                 Uri hospitalURI;
@@ -164,14 +169,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.nav_breather:
                 startActivity(new Intent(this,Breather.class));
+                Bungee.card(this);
                 break;
 
             case R.id.nav_sounds:
                 startActivity(new Intent(this,SoundActivity.class));
+                Bungee.card(this);
                 break;
 
             case R.id.nav_challenges:
                 startActivity(new Intent(this, Challenges.class));
+                Bungee.card(this);
                 break;
         }
         return true;
