@@ -4,6 +4,8 @@
     package="osmandroid.venturesity.helloworld3o">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".TasksActivity"></activity>
+        <activity android:name=".Breather"></activity>
+        <activity android:name=".TasksActivity" />
         <activity android:name=".GroupDiscussion" />
         <activity android:name=".LiveDoctor" />
         <activity android:name=".SignupActivity" />
@@ -28,6 +31,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ChatActivity" />
+        <activity android:name=".SoundActivity" />
+        <activity android:name=".Challenges" />
     </application>
 
 </manifest>

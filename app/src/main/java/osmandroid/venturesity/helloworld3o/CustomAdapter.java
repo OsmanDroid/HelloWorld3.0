@@ -18,13 +18,13 @@ public class CustomAdapter extends RecyclerView.Adapter<ChatViewHolder> {
 
     private List<ChatModel> chatModelList;
     private Context context;
-    //private int chatCase = 0;
+    private int chatCase = 0;
     private String uid;
 
-    public CustomAdapter(Context context,List<ChatModel> chatModelList,String uid) {
+    public CustomAdapter(Context context,List<ChatModel> chatModelList,String uid,int chatCase) {
         this.context = context;
         this.chatModelList = chatModelList;
-        //this.chatCase = chatCase;
+        this.chatCase = chatCase;
         this.uid = uid;
     }
 
@@ -39,6 +39,25 @@ public class CustomAdapter extends RecyclerView.Adapter<ChatViewHolder> {
     public void onBindViewHolder(@NonNull ChatViewHolder holder, int position) {
 
         holder.btnIntent.setVisibility(View.GONE);
+
+        switch (chatCase)
+        {
+            case 1:
+                holder.doctor.setImageDrawable(context.getResources().getDrawable(R.drawable.bot_png, context.getApplicationContext().getTheme()));
+                holder.user.setImageDrawable(context.getResources().getDrawable(R.drawable.user, context.getApplicationContext().getTheme()));
+
+                break;
+            case 2:
+                holder.doctor.setImageDrawable(context.getResources().getDrawable(R.drawable.doctor, context.getApplicationContext().getTheme()));
+                holder.user.setImageDrawable(context.getResources().getDrawable(R.drawable.user, context.getApplicationContext().getTheme()));
+
+                break;
+            case 3:
+                holder.doctor.setImageDrawable(context.getResources().getDrawable(R.drawable.user, context.getApplicationContext().getTheme()));
+                holder.user.setImageDrawable(context.getResources().getDrawable(R.drawable.user, context.getApplicationContext().getTheme()));
+
+                break;
+        }
 
         ChatModel model = chatModelList.get(position);
         if (chatModelList.get(position).getMsgUser().equals("user")) {

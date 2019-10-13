@@ -20,6 +20,28 @@
 
     </group>
 
+    <item android:title="Activities">
+        <menu>
+
+            <item
+                android:id="@+id/nav_breather"
+                android:title="Meditation" />
+
+            <item
+                android:id="@+id/nav_sounds"
+                android:title="Sounds" />
+
+            <item
+                android:id="@+id/nav_challenges"
+                android:title="Challenges" />
+
+
+
+
+        </menu>
+    </item>
+
+
     <item android:title="Nearby">
         <menu>
 
@@ -34,5 +56,6 @@
 
         </menu>
     </item>
+
 
 </menu>

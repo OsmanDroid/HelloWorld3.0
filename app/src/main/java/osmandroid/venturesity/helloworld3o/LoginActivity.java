@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,6 +30,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar!=null)actionBar.setTitle("Login");
+
+
         mAuth = FirebaseAuth.getInstance();
         Emailfield = findViewById(R.id.fieldEmail);
         Passwordfield = findViewById(R.id.fieldPassword);

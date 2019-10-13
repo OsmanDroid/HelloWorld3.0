@@ -2,6 +2,7 @@ package osmandroid.venturesity.helloworld3o;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,6 +47,9 @@ public class LiveDoctor extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar!=null)actionBar.setTitle("Online Live Consultation");
+
         recyclerView = findViewById(R.id.recyclerView);
         editText = findViewById(R.id.editText);
         sendButton = findViewById(R.id.send_btn);
@@ -61,9 +65,13 @@ public class LiveDoctor extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        String uid = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("Doctors").child("FrzHCwQxgjZYhTB0dZ5OLd13hf22");
+        userRef.child("patientUID").setValue(uid);
+
         chatModelList = new ArrayList<>();
 
-        adapter = new CustomAdapter(this, chatModelList, Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
+        adapter = new CustomAdapter(this, chatModelList, Objects.requireNonNull(mAuth.getCurrentUser()).getUid(),2);
 
         ref = FirebaseDatabase.getInstance().getReference().child("Users").child(Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
 

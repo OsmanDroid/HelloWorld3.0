@@ -1,6 +1,7 @@
 package osmandroid.venturesity.helloworld3o;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -38,6 +39,10 @@ public class SignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar!=null)actionBar.setTitle("Sign Up");
+
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -146,8 +151,8 @@ public class SignupActivity extends AppCompatActivity {
         userRef.child("isEnrolled").setValue("false");
 
 
-        userRef.child("chat").child("initial").child("msgUser").setValue("doctor");
-        userRef.child("chat").child("initial").child("msgText").setValue("Hi, I'm your Health Assistant.\nHow may I help you?");
+        //userRef.child("chat").child("initial").child("msgUser").setValue("doctor");
+        //userRef.child("chat").child("initial").child("msgText").setValue("Hi, I'm your Health Assistant.\nHow may I help you?");
 
     }
 

@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="16dp">
+
+
+
+<LinearLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".MainActivity"
     tools:showIn="@layout/app_bar_main"
     android:orientation="vertical"
-    android:weightSum="1"
-    android:layout_marginTop="50dp"
-    android:background="#806ABD9D">
+    android:layout_marginTop="50dp">
 
     <androidx.cardview.widget.CardView
         android:layout_margin="16dp"
@@ -29,10 +37,19 @@
             android:background="#fff"
             android:padding="16dp">
 
+            <TextView
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:textColor="#B71C1C"
+                android:text="Online Live Consultation with Doctor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
             <ImageView
                 android:scaleType="fitCenter"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="150dp"
                 android:src="@drawable/home1"
                 android:layout_margin="8dp" />
             <LinearLayout
@@ -88,28 +105,66 @@
         cardElevation="4dp"
         contentPadding="10dp"
         cardPreventCornerOverlap="true"
-        cardUseCompatPadding="true">
+        cardUseCompatPadding="true"
+        android:id="@+id/tasksCV">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
+            <TextView
+                android:padding="3dp"
                 android:layout_margin="8dp"
-                android:layout_gravity="center"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:src="@drawable/doc1" />
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:textColor="#B71C1C"
+                android:text="Tasks to Reduce Anger / Mental illness"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-                <Button
-                    android:layout_margin="8dp"
-                    android:layout_gravity="center"
-                    android:background="@color/colorAccent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Enroll Now"
-                    />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        cardCornerRadius="8dp"
+        cardElevation="4dp"
+        contentPadding="10dp"
+        cardPreventCornerOverlap="true"
+        cardUseCompatPadding="true"
+        android:paddingBottom="16dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:gravity="start"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="#005711"
+                android:text="Access to
+                \n* Online Live Consultation\n* Anonymous Group Therapy Sessions\n* Health Care Chat Bot \n\t\t\t\t\t\tFor just 19.99$ / month. \nSubscribers also get free consultation for each point earned from Activities"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <Button
+            android:id="@+id/enrollbtn"
+            android:layout_margin="8dp"
+            android:layout_gravity="start"
+            android:background="#26ae90"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enroll Now with 7 DAYS FREE TRIAL" />
 
 
 
@@ -118,4 +173,9 @@
 
 
 
+
+
+
 </LinearLayout>
+
+</ScrollView>

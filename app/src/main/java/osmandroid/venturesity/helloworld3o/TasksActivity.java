@@ -1,6 +1,7 @@
 package osmandroid.venturesity.helloworld3o;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,13 +36,17 @@ public class TasksActivity extends AppCompatActivity {
 
 
     FirebaseAuth mAuth;
-    DatabaseReference ref;
 
+    Button calculate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tasks);
+
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar!=null)actionBar.setTitle("Tasks");
+
 
         recyclerView = findViewById(R.id.recyclerView);
 
@@ -59,28 +64,18 @@ public class TasksActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        addTestData();
-        adapter = new TasksAdapter(titleList,checkedList);
 
+        adapter = new TasksAdapter(titleList,checkedList,this);
+        addTestData();
         recyclerView.setAdapter(adapter);
 
-        ref = FirebaseDatabase.getInstance().getReference().child("Users").child(Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
+        calculate = findViewById(R.id.calculatebtn);
 
-        ref.child("Task").child("day1").addValueEventListener(new ValueEventListener() {
+
+        calculate.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    DailyScoreModel  dailyScoreModel = postSnapshot.getValue(DailyScoreModel.class);
-
-
-                    // here you can access to name property like university.name
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
+            public void onClick(View v) {
+                adapter.calculateResults();
             }
         });
 
@@ -91,7 +86,10 @@ public class TasksActivity extends AppCompatActivity {
 
     void addTestData()
     {
-        titleList.add("Exercise minimum 30 minutes in morning");
+        titleList.clear();
+        checkedList.clear();
+
+        titleList.add("Challenges minimum 30 minutes in morning");
         titleList.add("Spend more time with family and friends");
         titleList.add("Work on your hobbies");
         titleList.add("Fulfill the work you always gave excuse to");
@@ -118,6 +116,8 @@ public class TasksActivity extends AppCompatActivity {
         checkedList.add(false);
         checkedList.add(false);
 
+        adapter.notifyDataSetChanged();
+
     }
 
     public void onClick(View view) {
@@ -126,24 +126,31 @@ public class TasksActivity extends AppCompatActivity {
         {
             case R.id.button1:
                 changeColor(view);
+                addTestData();
                 break;
             case R.id.button7:
                 changeColor(view);
+                addTestData();
                 break;
             case R.id.button6:
                 changeColor(view);
+                addTestData();
                 break;
             case R.id.button5:
                 changeColor(view);
+                addTestData();
                 break;
             case R.id.button4:
                 changeColor(view);
+                addTestData();
                 break;
             case R.id.button3:
                 changeColor(view);
+                addTestData();
                 break;
             case R.id.button2:
                 changeColor(view);
+                addTestData();
                 break;
 
         }
@@ -164,4 +171,5 @@ public class TasksActivity extends AppCompatActivity {
 
         button.setBackgroundColor(Color.parseColor("#ff6861"));
     }
+
 }

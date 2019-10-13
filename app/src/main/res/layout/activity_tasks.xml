@@ -97,12 +97,26 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:paddingTop="10dp"
         android:paddingBottom="8dp"
         android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/calculatebtn"
+        android:layout_marginBottom="8dp"
+        android:textSize="20sp"
+        android:text="CALCULATE"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:background="@color/colorAccent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 <!--
     <androidx.cardview.widget.CardView

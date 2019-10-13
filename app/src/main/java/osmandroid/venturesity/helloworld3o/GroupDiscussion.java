@@ -2,6 +2,7 @@ package osmandroid.venturesity.helloworld3o;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,6 +47,9 @@ public class GroupDiscussion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar!=null)actionBar.setTitle("Anonymous Group Discussion");
+
         recyclerView = findViewById(R.id.recyclerView);
         editText = findViewById(R.id.editText);
         sendButton = findViewById(R.id.send_btn);
@@ -63,7 +67,7 @@ public class GroupDiscussion extends AppCompatActivity {
 
         chatModelList = new ArrayList<>();
 
-        adapter = new CustomAdapter(this, chatModelList, Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
+        adapter = new CustomAdapter(this, chatModelList, Objects.requireNonNull(mAuth.getCurrentUser()).getUid(),3);
 
         ref = FirebaseDatabase.getInstance().getReference().child("GroupDiscussion");
 

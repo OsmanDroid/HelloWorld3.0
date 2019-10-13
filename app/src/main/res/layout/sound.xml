@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:textColor="#b71c1c"
+        android:gravity="center"
+        android:textSize="28sp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sounds That Makes You feel Relaxed"
+        android:textStyle="bold" />
+
+
+    <Button
+        android:background="@color/colorAccent"
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Music Therapy and Emotions for Depression, Stress and Mental Health Issues" />
+
+    <Button
+        android:background="@color/colorAccent"
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Instant Relief From Anxiety and Stress Peaceful Meditation Music, Deep Relaxing and Healing Music" />
+
+    <Button
+        android:background="@color/colorAccent"
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="DEEP MEDITATION MUSIC " />
+
+    <Button
+        android:background="@color/colorAccent"
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="The Most Relaxing Music Ever! Slow Down" />
+</LinearLayout>

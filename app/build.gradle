@@ -36,7 +36,7 @@ dependencies {
 
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
-    implementation 'com.github.Binary-Finery:Bungee:1.0'
+    implementation 'com.github.Binary-Finery:Bungee:2.0'
 
     implementation 'ai.api:sdk:2.0.7@aar'
 
@@ -50,5 +50,6 @@ dependencies {
     implementation 'commons-io:commons-io:2.4'
 
     //implementation 'com.github.alorma:timelineview:2.3.0'
-    implementation 'com.github.qapqap:TimelineView:v1.6'
+    //implementation 'com.github.qapqap:TimelineView:v1.6'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
 }

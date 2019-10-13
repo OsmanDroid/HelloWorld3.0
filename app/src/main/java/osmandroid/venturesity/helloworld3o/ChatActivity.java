@@ -13,6 +13,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +26,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,14 +56,14 @@ public class ChatActivity extends AppCompatActivity {
 
     MyProgressDialog myProgressDialog;
 
-    @NonNull
-    protected static final Query sChatQuery =
-            FirebaseDatabase.getInstance().getReference().child("chats").limitToLast(50);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar!=null)actionBar.setTitle("Health Assistant");
 
         recyclerView = findViewById(R.id.recyclerView);
         editText = findViewById(R.id.editText);
@@ -80,7 +82,7 @@ public class ChatActivity extends AppCompatActivity {
 
         chatModelList = new ArrayList<>();
 
-        adapter = new CustomAdapter(this, chatModelList, Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
+        adapter = new CustomAdapter(this, chatModelList, Objects.requireNonNull(mAuth.getCurrentUser()).getUid(),1);
 
         ref = FirebaseDatabase.getInstance().getReference().child("Users").child(Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
         //ref.keepSynced(true);
@@ -119,6 +121,40 @@ public class ChatActivity extends AppCompatActivity {
 
             }
         });
+
+        ref.child("chat").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                if (snapshot.getValue() == null) {
+                    // The child doesn't exist
+                    myProgressDialog.dismissPDialog();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        ref.child("chat").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                if (snapshot.getValue() == null) {
+                    // The child doesn't exist
+                    myProgressDialog.dismissPDialog();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
 
         final AIConfiguration config = new AIConfiguration("7597677cd3eb4de789abb14778816d2d",
                 AIConfiguration.SupportedLanguages.English,
